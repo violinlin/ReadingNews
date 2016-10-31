@@ -1,6 +1,8 @@
 package com.violin.readingnews;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.violin.readingnews.kit.systemBar.SysBar;
+import com.violin.readingnews.utils.Util;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SysBar.applyTintTransparent(this);
+        SysBar.applyTint(this);
         setContentView(R.layout.main_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
+        initToobar();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +31,17 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    private void initToobar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            AppBarLayout.LayoutParams pa = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+            pa.setMargins(0, Util.getSysStatusHeight(this), 0, 0);
+            toolbar.setLayoutParams(pa);
+        }
+
+        setSupportActionBar(toolbar);
     }
 
     @Override
