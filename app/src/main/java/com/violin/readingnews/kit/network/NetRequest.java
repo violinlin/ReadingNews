@@ -11,7 +11,7 @@ public class NetRequest {
     private Object[] heders;
     private Object[] params;
     private byte[] eParams;
-    private Subscriber<CustomHttpResponse> subscriber;
+    private Subscriber<HttpResponse> subscriber;
 
     public NetRequest action(String action) {
         this.action = action;
@@ -33,7 +33,7 @@ public class NetRequest {
         return this;
     }
 
-    public NetRequest listener(Subscriber<CustomHttpResponse> subscriber) {
+    public NetRequest listener(Subscriber<HttpResponse> subscriber) {
         this.subscriber = subscriber;
         return this;
     }
@@ -58,7 +58,7 @@ public class NetRequest {
         return eParams;
     }
 
-    public Subscriber<CustomHttpResponse> getSubscriber() {
+    public Subscriber<HttpResponse> getSubscriber() {
         return subscriber;
     }
 }

@@ -18,9 +18,9 @@ import rx.Observable;
 public interface PostService {
     @FormUrlEncoded
     @POST("{action}")
-    Observable<CustomHttpResponse> getData(@Path("action") String action, @HeaderMap Map<String, Object> headmap, @FieldMap Map<String, Object> pMap);
+    Observable<String> getData(@Path("action") String action, @HeaderMap Map<String, Object> headmap, @FieldMap Map<String, Object> pMap);
 
     @POST("{action}")
-    Observable<CustomHttpResponse> getDataEncode(@Path("action") String action, @HeaderMap Map<String, Object> headmap, @Body RequestBody requestBody);
+    Observable<String> getDataEncode(@Path("action") String action, @HeaderMap Map<String, Object> headmap, @Body RequestBody requestBody);
 }
 

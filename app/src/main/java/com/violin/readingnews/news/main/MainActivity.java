@@ -16,6 +16,8 @@ import com.violin.readingnews.R;
 import com.violin.readingnews.kit.systemBar.SysBar;
 import com.violin.readingnews.utils.Util;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     MainContract.Presenter mPresenter;
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void updateNewsList() {
-        Toast.makeText(getBaseContext(), "返回数据成功", Toast.LENGTH_SHORT).show();
+    public void updateNewsList(List<NewsBean> beanList) {
+        Toast.makeText(getBaseContext(), "返回数据成功" + beanList.size(), Toast.LENGTH_SHORT).show();
     }
 }

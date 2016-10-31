@@ -3,9 +3,18 @@ package com.violin.readingnews.news.main;
 
 import android.util.Log;
 
-import com.violin.readingnews.kit.network.CustomHttpResponse;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.violin.readingnews.kit.network.HttpResponse;
 import com.violin.readingnews.kit.network.main.MainRequest;
 import com.violin.readingnews.utils.Util;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import rx.Subscriber;
 
@@ -17,13 +26,14 @@ import rx.Subscriber;
 
 public class MainPresenter implements MainContract.Presenter {
     private MainContract.View mView;
+    private List<NewsBean> beanList;
 
     @Override
     public void requestData(String action, String type) {
         new MainRequest()
                 .action(action)
                 .paramKVs("key", Util.KEY, "type", type)
-                .listener(new Subscriber<CustomHttpResponse>() {
+                .listener(new Subscriber<HttpResponse>() {
                     @Override
                     public void onCompleted() {
 
@@ -36,9 +46,29 @@ public class MainPresenter implements MainContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(CustomHttpResponse customHttpResponse) {
-                        Log.d("whl", customHttpResponse.toString());
-                        mView.updateNewsList();
+                    public void onNext(HttpResponse httpResponse) {
+                        int code = httpResponse.getError_code();
+                        if (code == 0) {
+
+
+                            beanList = new LinkedList<NewsBean>();
+                            NewsBean bean;
+                            Gson gson;
+                            try {
+                                JSONArray array = httpResponse.getResult().getJSONArray("data");
+                                for (int i = 0; i < array.length(); i++) {
+                                    gson = new Gson();
+                                    bean = gson.fromJson(array.getString(i), NewsBean.class);
+                                    beanList.add(bean);
+                                }
+
+                                mView.updateNewsList(beanList);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            String mes = httpResponse.getReason();
+                        }
 
                     }
                 }).build().startPost();

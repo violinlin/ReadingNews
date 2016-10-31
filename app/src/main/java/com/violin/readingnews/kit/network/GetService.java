@@ -14,6 +14,6 @@ import rx.Observable;
 
 public interface GetService {
     @GET("{action}")
-    Observable<CustomHttpResponse> getData(@Path("action") String action, @HeaderMap Map<String, Object> hMap,
+    Observable<String> getData(@Path("action") String action, @HeaderMap Map<String, Object> hMap,
                                            @QueryMap Map<String, Object> pMap);
 }

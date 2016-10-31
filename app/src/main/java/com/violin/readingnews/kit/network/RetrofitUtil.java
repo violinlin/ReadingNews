@@ -1,4 +1,5 @@
 package com.violin.readingnews.kit.network;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -9,8 +10,10 @@ import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -31,7 +34,7 @@ public class RetrofitUtil {
         builder.connectTimeout(TIME_OUT, TimeUnit.SECONDS);
         retrofit = new Retrofit.Builder()
                 .client(builder.build())
-                .addConverterFactory(GsonConverterFactory.create())//返回报文的转换器
+                .addConverterFactory(ScalarsConverterFactory.create())//返回报文的转换器
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//使用Rxjava的适配器
                 .baseUrl(HOST)
                 .build();
@@ -47,29 +50,47 @@ public class RetrofitUtil {
         return retrofitUtil;
     }
 
-    public void getDataByPost(String action, Object headers[], Object params[], Subscriber<CustomHttpResponse> subscriber) {
+    public void getDataByPost(String action, Object headers[], Object params[], Subscriber<HttpResponse> subscriber) {
         postService.getData(action, buildMap(headers), buildMap(params))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .map(new Func1<String, HttpResponse>() {
+                    @Override
+                    public HttpResponse call(String s) {
+                        return new HttpResponse().parseJSON(s);
+                    }
+                })
                 .subscribe(subscriber);
 
 
     }
 
-    public void getDataByPostEncode(String action, Object headers[], byte[] bytes, Subscriber<CustomHttpResponse> subscriber) {
+    public void getDataByPostEncode(String action, Object headers[], byte[] bytes, Subscriber<HttpResponse> subscriber) {
         postService.getDataEncode(action, buildMap(headers), buildParams(bytes))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .map(new Func1<String, HttpResponse>() {
+                    @Override
+                    public HttpResponse call(String s) {
+                        return new HttpResponse().parseJSON(s);
+                    }
+                })
                 .subscribe(subscriber);
     }
 
-    public void getDataByGet(String action, Object heasers[], Object params[], Subscriber<CustomHttpResponse> subscriber) {
+    public void getDataByGet(String action, Object heasers[], Object params[], Subscriber<HttpResponse> subscriber) {
         getService.getData(action, buildMap(heasers), buildMap(params))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .map(new Func1<String, HttpResponse>() {
+                    @Override
+                    public HttpResponse call(String s) {
+                        return new HttpResponse().parseJSON(s);
+                    }
+                })
                 .subscribe(subscriber);
 
     }
@@ -81,15 +102,16 @@ public class RetrofitUtil {
 
     }
 
+
     //键值对的拼接
     private Map<String, Object> buildMap(Object params[]) {
         Map<String, Object> map = new HashMap<>();
-        if (params!=null){
-            if (params.length%2==0){
+        if (params != null) {
+            if (params.length % 2 == 0) {
                 for (int i = 0; i < params.length - 1; i += 2) {
                     map.put((String) params[i], params[i + 1]);
                 }
-            }else {
+            } else {
                 throw new RuntimeException("参数错误!");
             }
         }
