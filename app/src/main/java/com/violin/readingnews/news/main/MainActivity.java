@@ -1,4 +1,4 @@
-package com.violin.readingnews.news;
+package com.violin.readingnews.news.main;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.violin.readingnews.BasePresenter;
 import com.violin.readingnews.R;
 import com.violin.readingnews.kit.systemBar.SysBar;
 import com.violin.readingnews.utils.Util;

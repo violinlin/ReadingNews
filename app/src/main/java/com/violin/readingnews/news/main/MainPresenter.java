@@ -1,4 +1,4 @@
-package com.violin.readingnews.news;
+package com.violin.readingnews.news.main;
 
 
 import android.util.Log;
