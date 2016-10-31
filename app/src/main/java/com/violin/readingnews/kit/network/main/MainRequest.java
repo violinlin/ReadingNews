@@ -1,6 +1,7 @@
 package com.violin.readingnews.kit.network.main;
 
-import com.violin.retrofit_rxjava_demo.netutils.NetRequest;
+
+import com.violin.readingnews.kit.network.NetRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,7 +13,7 @@ import org.json.JSONObject;
 public class MainRequest extends NetRequest {
 
     public MainRequest() {
-        super.headerKVs("Content-Type", "application/json");//构架统一请求header
+//        super.headerKVs("Content-Type", "application/json");//构架统一请求header
 //        super.paramEncode(SecretUtil.aes_base64(buildJSONParams().toString(), "key"));
     }
 

@@ -1,4 +1,4 @@
-package com.violin.readingnews;
+package com.violin.readingnews.news;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,19 +10,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.violin.readingnews.BasePresenter;
+import com.violin.readingnews.R;
 import com.violin.readingnews.kit.systemBar.SysBar;
 import com.violin.readingnews.utils.Util;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainContract.View {
+
+    MainContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SysBar.applyTint(this);
         setContentView(R.layout.main_activity);
-
+        initMVP();
         initToobar();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    private void initMVP() {
+        mPresenter = new MainPresenter();
+        mPresenter.setView(this);
+        mPresenter.requestData("index", "top");
     }
 
     private void initToobar() {
@@ -64,5 +76,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void setPresenter(MainContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void updateNewsList() {
+        Toast.makeText(getBaseContext(), "返回数据成功", Toast.LENGTH_SHORT).show();
     }
 }

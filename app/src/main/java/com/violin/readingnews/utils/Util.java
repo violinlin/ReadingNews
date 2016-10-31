@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
  */
 
 public class Util {
+    public static final String KEY="2c03a39f3b9d45f6a6a92e6dc7013a3e";
     /**
      * 获取状态栏高度
      *

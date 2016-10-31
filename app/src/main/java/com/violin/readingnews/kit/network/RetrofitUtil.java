@@ -84,13 +84,16 @@ public class RetrofitUtil {
     //键值对的拼接
     private Map<String, Object> buildMap(Object params[]) {
         Map<String, Object> map = new HashMap<>();
-        if (params != null && params.length % 2 == 0) {
-            for (int i = 0; i < params.length - 1; i += 2) {
-                map.put((String) params[i], params[i + 1]);
+        if (params!=null){
+            if (params.length%2==0){
+                for (int i = 0; i < params.length - 1; i += 2) {
+                    map.put((String) params[i], params[i + 1]);
+                }
+            }else {
+                throw new RuntimeException("参数错误!");
             }
-        } else {
-            throw new RuntimeException("参数错误!");
         }
+
         return map;
     }
 
