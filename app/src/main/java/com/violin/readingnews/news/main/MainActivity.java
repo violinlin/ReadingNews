@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @BindView(R.id.navview)
     NavView navView;
     @BindView(R.id.viewpager)
-    ViewPager viewPager;
+    MainViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void initView() {
         navView.setOnSwitchListener(this);
-
+        viewPager.setMainAdapter(getSupportFragmentManager());
     }
 
     @OnClick(R.id.fab)
