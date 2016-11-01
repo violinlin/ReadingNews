@@ -10,11 +10,9 @@ import android.widget.TextView;
 
 import com.violin.readingnews.R;
 import com.violin.readingnews.kit.image.ImageUtils;
-
-import java.util.List;
+import com.violin.readingnews.news.news.newdetail.NewsDetailActivity;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 /**
@@ -41,11 +39,12 @@ public class NewsItemView extends LinearLayout implements View.OnClickListener {
         setGravity(Gravity.CENTER_VERTICAL);
         setLayoutParams(params);
         inflate(context, R.layout.news_item_view, this);
+        this.setOnClickListener(this);
         ButterKnife.bind(this, this);
     }
 
     public void loadData(NewsBean bean) {
-        newsBean=bean;
+        newsBean = bean;
         tv_title.setText(bean.getTitle());
         ImageUtils.loadImage(getContext(), bean.getThumbnail_pic_s(), imageView);
         tv_des.setText(bean.getAuthor_name());
@@ -54,6 +53,8 @@ public class NewsItemView extends LinearLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        NewsDetailActivity.launch(getContext(), newsBean.getUrl());
 
     }
+
 }
