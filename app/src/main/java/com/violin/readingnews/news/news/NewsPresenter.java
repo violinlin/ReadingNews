@@ -1,4 +1,4 @@
-package com.violin.readingnews.news.main;
+package com.violin.readingnews.news.news;
 
 
 import android.util.Log;
@@ -17,17 +17,16 @@ import java.util.List;
 import rx.Subscriber;
 
 /**
- * Created by whl on 2016/10/31.
- * mvp
- * mvp中逻辑代码的实现类
+ * Created by whl on 2016/11/1.
  */
 
-public class MainPresenter implements MainContract.Presenter {
-    private MainContract.View mView;
+public class NewsPresenter implements NewsContract.Presenter {
+
+    private NewsContract.View mView;
     private List<NewsBean> beanList;
 
     @Override
-    public void requestData(String action, String type) {
+    public void requestNewsData(String action, String type) {
         new MainRequest()
                 .action(action)
                 .paramKVs("key", Util.KEY, "type", type)
@@ -60,7 +59,7 @@ public class MainPresenter implements MainContract.Presenter {
                                     beanList.add(bean);
                                 }
 
-                                mView.updateNewsList(beanList);
+                                mView.upDateNewsList(beanList);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -70,13 +69,11 @@ public class MainPresenter implements MainContract.Presenter {
 
                     }
                 }).build().startPost();
-
     }
 
-    @Override
-    public void setView(MainContract.View view) {
-        mView = view;
-        mView.setPresenter(this);
 
+    @Override
+    public void setView(NewsContract.View view) {
+        this.mView = view;
     }
 }

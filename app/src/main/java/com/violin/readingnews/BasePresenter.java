@@ -8,5 +8,5 @@ package com.violin.readingnews;
  */
 
 public interface BasePresenter<T> {
-    void setView(T BaseView);
+    void setView(T view);
 }

@@ -1,4 +1,4 @@
-package com.violin.readingnews.news.main;
+package com.violin.readingnews.news.news;
 
 /**
  * Created by whl on 2016/10/31.

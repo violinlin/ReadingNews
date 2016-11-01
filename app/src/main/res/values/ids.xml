@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--使用RecyclerView的header和footer扩展时,给每个item添加tag-->
+    <item name="hfrecycler_item_tag" type="id" />
+</resources>

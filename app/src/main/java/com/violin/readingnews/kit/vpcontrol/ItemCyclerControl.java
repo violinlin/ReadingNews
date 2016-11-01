@@ -39,7 +39,7 @@ public class ItemCyclerControl implements ViewPager.OnPageChangeListener, View.O
 
     public void setupWithItemList(List itemList) {
         this.itemList = itemList;
-        isFirstDidAppears = new boolean[itemList.size()];
+        isFirstWillAppears = new boolean[itemList.size()];
         isFirstDidAppears = new boolean[itemList.size()];
         for (int i = 0; i < itemList.size(); i++) {
             isFirstWillAppears[i] = true;
