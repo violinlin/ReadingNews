@@ -4,14 +4,12 @@ package com.violin.readingnews.news.main;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.violin.readingnews.kit.network.HttpResponse;
 import com.violin.readingnews.kit.network.main.MainRequest;
 import com.violin.readingnews.utils.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.LinkedList;
 import java.util.List;
