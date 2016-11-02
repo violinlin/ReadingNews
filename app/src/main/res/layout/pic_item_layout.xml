@@ -5,15 +5,23 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp" />
+        android:textColor="#323232"
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="250dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:textColor="#969696" />
 </merge>

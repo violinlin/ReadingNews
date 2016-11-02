@@ -16,6 +16,6 @@ public class PicContract {
 
 
     interface Presenter extends BasePresenter<PicContract.View> {
-        void requestData(int page, int count);
+        void requestData();
     }
 }

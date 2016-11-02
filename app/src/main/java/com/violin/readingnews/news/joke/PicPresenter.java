@@ -24,11 +24,11 @@ public class PicPresenter implements PicContract.Presenter {
     private List<PicBean> picBeanList;
 
     @Override
-    public void requestData(int page, int count) {
+    public void requestData() {
         new MainRequest()
                 .host("http://japi.juhe.cn/")
                 .action("joke/img/text.from")
-                .paramKVs("page", page, "pagesize", count, "key", Util.KEY_JOKE)
+                .paramKVs("page", 1, "pagesize", 20, "key", Util.KEY_JOKE)
                 .listener(new Subscriber<HttpResponse>() {
                     @Override
                     public void onCompleted() {

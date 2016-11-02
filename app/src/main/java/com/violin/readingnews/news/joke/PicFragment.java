@@ -52,7 +52,7 @@ public class PicFragment extends Fragment implements PicContract.View {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.requestData(1, 20);
+        presenter.requestData();
     }
 
     @Override
