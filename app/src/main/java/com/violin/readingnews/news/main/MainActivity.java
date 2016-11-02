@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements NavView.SwitchLis
     NavView navView;
     @BindView(R.id.viewpager)
     MainViewPager viewPager;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavView.SwitchLis
     }
 
 
-
     private void initToobar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             AppBarLayout.LayoutParams pa = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
             pa.setMargins(0, Util.getSysStatusHeight(this), 0, 0);

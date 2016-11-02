@@ -18,7 +18,7 @@ import com.violin.readingnews.R;
 
 public class ImageUtils {
     public static void loadImage(Context context, String url, final ImageView imageView) {
-        imageView.setTag(TAG_KEY,ImageState.loading);
+        imageView.setTag(TAG_KEY, ImageState.loading);
         if (url.endsWith(".gif")) {
             Glide.with(context).load(url)
                     .asGif()
@@ -29,13 +29,13 @@ public class ImageUtils {
                     .listener(new RequestListener<String, GifDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GifDrawable> target, boolean isFirstResource) {
-                            imageView.setTag(TAG_KEY,ImageState.error);
+                            imageView.setTag(TAG_KEY, ImageState.error);
                             return false;
                         }
 
                         @Override
                         public boolean onResourceReady(GifDrawable resource, String model, Target<GifDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            imageView.setTag(TAG_KEY,ImageState.success);
+                            imageView.setTag(TAG_KEY, ImageState.success);
                             return false;
                         }
                     })
@@ -44,20 +44,20 @@ public class ImageUtils {
 
             Glide.with(context)
                     .load(url)
-                    .thumbnail(0.1f)
-                    .animate(R.anim.item_alpha_in)
+                    .thumbnail(0.1f)//设置加载缩略图
+                    .animate(R.anim.item_alpha_in)//设置加载动画
                     .error(R.drawable.image_reload)
                     .placeholder(R.drawable.image_loading)
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            imageView.setTag(TAG_KEY,ImageState.error);
+                            imageView.setTag(TAG_KEY, ImageState.error);
                             return false;
                         }
 
                         @Override
                         public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            imageView.setTag(TAG_KEY,ImageState.success);
+                            imageView.setTag(TAG_KEY, ImageState.success);
                             return false;
                         }
                     })
@@ -67,10 +67,11 @@ public class ImageUtils {
     }
 
     //图片加载的三种状态
-   public enum ImageState {
+    public enum ImageState {
         loading, success, error;
     }
-    public static int TAG_KEY=-100;
+
+    public static int TAG_KEY = -100;
 
 
 }

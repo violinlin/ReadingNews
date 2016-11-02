@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import com.violin.readingnews.kit.vpcontrol.ItemCyclerControl;
 import com.violin.readingnews.news.joke.PicFragment;
 import com.violin.readingnews.news.news.NewsFragment;
+import com.violin.readingnews.news.news.home.NewsHomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class MainViewPager extends ViewPager {
 
     public void setMainAdapter(FragmentManager manager) {
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new NewsFragment());
+        fragments.add(new NewsHomeFragment());
         fragments.add(new PicFragment());
         fragments.add(new NewsFragment());
         fragments.add(new NewsFragment());

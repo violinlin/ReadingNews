@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.violin.readingnews.news.news.home.NewsHomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <com.violin.readingnews.kit.trackview.ColorTrackView
+            android:id="@+id/id_tab_01"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:progress="1"
+            app:text="简介"
+            app:text_change_color="#ffff0000"
+            app:text_origin_color="#ff000000"
+            app:text_size="18sp" />
+
+        <com.violin.readingnews.kit.trackview.ColorTrackView
+            android:id="@+id/id_tab_02"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:text="评价"
+            app:text_change_color="#ffff0000"
+            app:text_origin_color="#ff000000"
+            app:text_size="18sp" />
+
+        <com.violin.readingnews.kit.trackview.ColorTrackView
+            android:id="@+id/id_tab_03"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:text="相关"
+            app:text_change_color="#ffff0000"
+            app:text_origin_color="#ff000000"
+            app:text_size="18sp" />
+
+    </LinearLayout>
+
+    <com.violin.readingnews.news.news.home.NewsHomeViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.violin.readingnews.news.news.home.NewsHomeViewPager>
+
+</LinearLayout>

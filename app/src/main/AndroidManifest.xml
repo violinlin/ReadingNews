@@ -28,7 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".news.news.newdetail.NewsDetailActivity"></activity>
+        <activity
+            android:name=".news.news.newdetail.NewsDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

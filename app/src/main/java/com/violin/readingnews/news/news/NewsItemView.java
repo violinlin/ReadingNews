@@ -53,7 +53,7 @@ public class NewsItemView extends LinearLayout implements View.OnClickListener {
         newsBean = bean;
         tv_title.setText(bean.getTitle());
         ImageUtils.loadImage(getContext(), bean.getThumbnail_pic_s(), imageView);
-        tv_des.setText(bean.getAuthor_name());
+        tv_des.setText(bean.getAuthor_name()+"   "+bean.getDate());
 
     }
 
