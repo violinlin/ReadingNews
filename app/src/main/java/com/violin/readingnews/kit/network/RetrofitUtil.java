@@ -1,5 +1,7 @@
 package com.violin.readingnews.kit.network;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -23,7 +25,7 @@ import rx.schedulers.Schedulers;
 
 public class RetrofitUtil {
     private static RetrofitUtil retrofitUtil;
-    private static final String HOST = "http://v.juhe.cn/toutiao/";
+    private static final String HOST = "http://v.juhe.cn/";
     private Retrofit retrofit;
     private static final int TIME_OUT = 5;
     private PostService postService;//post服务
@@ -50,8 +52,9 @@ public class RetrofitUtil {
         return retrofitUtil;
     }
 
-    public void getDataByPost(String action, Object headers[], Object params[], Subscriber<HttpResponse> subscriber) {
-        postService.getData(action, buildMap(headers), buildMap(params))
+    public void getDataByPost(String url, Object headers[], Object params[], Subscriber<HttpResponse> subscriber) {
+        Log.d("whl", "post: " + url);
+        postService.getData(url, buildMap(headers), buildMap(params))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -66,8 +69,8 @@ public class RetrofitUtil {
 
     }
 
-    public void getDataByPostEncode(String action, Object headers[], byte[] bytes, Subscriber<HttpResponse> subscriber) {
-        postService.getDataEncode(action, buildMap(headers), buildParams(bytes))
+    public void getDataByPostEncode(String url, Object headers[], byte[] bytes, Subscriber<HttpResponse> subscriber) {
+        postService.getDataEncode(url, buildMap(headers), buildParams(bytes))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,8 +83,9 @@ public class RetrofitUtil {
                 .subscribe(subscriber);
     }
 
-    public void getDataByGet(String action, Object heasers[], Object params[], Subscriber<HttpResponse> subscriber) {
-        getService.getData(action, buildMap(heasers), buildMap(params))
+    public void getDataByGet(String url, Object heasers[], Object params[], Subscriber<HttpResponse> subscriber) {
+        Log.d("whl", "get: " + url);
+        getService.getData(url, buildMap(heasers), buildMap(params))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

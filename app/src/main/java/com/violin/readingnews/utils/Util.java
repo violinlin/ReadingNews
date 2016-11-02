@@ -9,7 +9,8 @@ import java.lang.reflect.Field;
  */
 
 public class Util {
-    public static final String KEY="2c03a39f3b9d45f6a6a92e6dc7013a3e";
+    public static final String KEY_NEWS ="2c03a39f3b9d45f6a6a92e6dc7013a3e";
+    public static final String KEY_JOKE="f8cd965e57f75524cf402c2d4f4a05c9";
     /**
      * 获取状态栏高度
      *

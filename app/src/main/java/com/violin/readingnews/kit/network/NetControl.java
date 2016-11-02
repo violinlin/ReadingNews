@@ -13,7 +13,7 @@ public class NetControl {
 
     public void startGet() {
         RetrofitUtil.getInstance().getDataByGet(
-                netRequest.getAction(),
+                netRequest.getUrl(),
                 netRequest.getHeders(),
                 netRequest.getParams(),
                 netRequest.getSubscriber());
@@ -22,7 +22,7 @@ public class NetControl {
 
     public void startPost() {
         RetrofitUtil.getInstance().getDataByPost(
-                netRequest.getAction(),
+                netRequest.getUrl(),
                 netRequest.getHeders(),
                 netRequest.getParams(),
                 netRequest.getSubscriber());
@@ -30,7 +30,7 @@ public class NetControl {
     }
     public void startPostEncode(){
         RetrofitUtil.getInstance().getDataByPostEncode(
-                netRequest.getAction(),
+                netRequest.getUrl(),
                 netRequest.getHeders(),
                 netRequest.geteParams(),
                 netRequest.getSubscriber());

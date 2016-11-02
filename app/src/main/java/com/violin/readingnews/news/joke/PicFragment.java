@@ -1,4 +1,4 @@
-package com.violin.readingnews.news.news;
+package com.violin.readingnews.news.joke;
 
 
 import android.os.Bundle;
@@ -18,14 +18,13 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsFragment extends Fragment implements NewsContract.View {
+public class PicFragment extends Fragment implements PicContract.View {
 
     @BindView(R.id.recyclerview)
-    NewsRecyclerView recyclerView;
-    private View view;
-    private NewsPresenter newsPresenter;
+    PicRecyclerView picRecyclerView;
+    private PicPresenter presenter;
 
-    public NewsFragment() {
+    public PicFragment() {
         // Required empty public constructor
     }
 
@@ -34,34 +33,30 @@ public class NewsFragment extends Fragment implements NewsContract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.news_fragment, container, false);
+        View view = inflater.inflate(R.layout.pic_fragment, container, false);
         ButterKnife.bind(this, view);
-        initView(view);
         initMVP();
+        initView();
         return view;
     }
 
+    private void initView() {
+
+    }
+
     private void initMVP() {
-        newsPresenter = new NewsPresenter();
-        newsPresenter.setView(this);
+        presenter = new PicPresenter();
+        presenter.setView(this);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        newsPresenter.requestNewsData();
+        presenter.requestData(1, 20);
     }
-
-    private void initView(View view) {
-        recyclerView.setNewsAdapter();
-    }
-
 
     @Override
-    public void upDateNewsList(List<NewsBean> beanList) {
-        recyclerView.loadData(beanList);
-
+    public void updateJokeList(List<PicBean> beanList) {
+        picRecyclerView.loadData(beanList);
     }
-
-
 }

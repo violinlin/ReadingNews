@@ -1,7 +1,7 @@
 package com.violin.readingnews.news.news;
 
-import com.violin.readingnews.BasePresenter;
-import com.violin.readingnews.BaseView;
+import com.violin.readingnews.news.BasePresenter;
+import com.violin.readingnews.news.BaseView;
 
 import java.util.List;
 
@@ -15,6 +15,6 @@ public class NewsContract {
     }
 
     interface Presenter extends BasePresenter<NewsContract.View> {
-        void requestNewsData(String action, String type);
+        void requestNewsData();
     }
 }

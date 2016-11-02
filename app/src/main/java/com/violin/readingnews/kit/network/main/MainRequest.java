@@ -11,24 +11,11 @@ import org.json.JSONObject;
  */
 
 public class MainRequest extends NetRequest {
+    private final String HOST = "http://v.juhe.cn/";
 
     public MainRequest() {
-//        super.headerKVs("Content-Type", "application/json");//构架统一请求header
-//        super.paramEncode(SecretUtil.aes_base64(buildJSONParams().toString(), "key"));
+        host(HOST);
     }
 
-    private JSONObject buildJSONParams() {
-        JSONObject paramJson = new JSONObject();
-
-        for (int i = 0; i < getParams().length; i++) {
-            try {
-                paramJson.put(getParams()[i].toString(), getParams()[i + 1]);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return paramJson;
-    }
 
 }

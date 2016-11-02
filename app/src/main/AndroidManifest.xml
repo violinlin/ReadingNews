@@ -11,7 +11,7 @@
 
     <!-- x5内核权限结束 -->
     <application
-        android:name=".NewsApplication"
+        android:name=".news.NewsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

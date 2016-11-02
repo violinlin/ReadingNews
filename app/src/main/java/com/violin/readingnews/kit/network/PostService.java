@@ -9,6 +9,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -17,10 +18,10 @@ import rx.Observable;
 
 public interface PostService {
     @FormUrlEncoded
-    @POST("{action}")
-    Observable<String> getData(@Path("action") String action, @HeaderMap Map<String, Object> headmap, @FieldMap Map<String, Object> pMap);
+    @POST()
+    Observable<String> getData(@Url String url, @HeaderMap Map<String, Object> headmap, @FieldMap Map<String, Object> pMap);
 
-    @POST("{action}")
-    Observable<String> getDataEncode(@Path("action") String action, @HeaderMap Map<String, Object> headmap, @Body RequestBody requestBody);
+    @POST()
+    Observable<String> getDataEncode(@Url String url, @HeaderMap Map<String, Object> headmap, @Body RequestBody requestBody);
 }
 

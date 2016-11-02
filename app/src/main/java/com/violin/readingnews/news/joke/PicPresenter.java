@@ -1,5 +1,4 @@
-package com.violin.readingnews.news.news;
-
+package com.violin.readingnews.news.joke;
 
 import android.util.Log;
 
@@ -11,7 +10,7 @@ import com.violin.readingnews.utils.Util;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
@@ -20,16 +19,16 @@ import rx.Subscriber;
  * Created by whl on 2016/11/1.
  */
 
-public class NewsPresenter implements NewsContract.Presenter {
-
-    private NewsContract.View mView;
-    private List<NewsBean> beanList;
+public class PicPresenter implements PicContract.Presenter {
+    private PicContract.View mView;
+    private List<PicBean> picBeanList;
 
     @Override
-    public void requestNewsData() {
+    public void requestData(int page, int count) {
         new MainRequest()
-                .action("toutiao/index")
-                .paramKVs("key", Util.KEY_NEWS, "type", "top")
+                .host("http://japi.juhe.cn/")
+                .action("joke/img/text.from")
+                .paramKVs("page", page, "pagesize", count, "key", Util.KEY_JOKE)
                 .listener(new Subscriber<HttpResponse>() {
                     @Override
                     public void onCompleted() {
@@ -44,36 +43,35 @@ public class NewsPresenter implements NewsContract.Presenter {
 
                     @Override
                     public void onNext(HttpResponse httpResponse) {
-                        int code = httpResponse.getError_code();
-                        if (code == 0) {
 
-
-                            beanList = new LinkedList<NewsBean>();
-                            NewsBean bean;
-                            Gson gson;
+                        if (httpResponse.getError_code() == 0) {
                             try {
+                                picBeanList = new ArrayList<PicBean>();
                                 JSONArray array = httpResponse.getResult().getJSONArray("data");
+                                Gson gson;
+                                PicBean picBean;
                                 for (int i = 0; i < array.length(); i++) {
                                     gson = new Gson();
-                                    bean = gson.fromJson(array.getString(i), NewsBean.class);
-                                    beanList.add(bean);
+                                    picBean = gson.fromJson(array.getString(i), PicBean.class);
+                                    picBeanList.add(picBean);
                                 }
+                                mView.updateJokeList(picBeanList);
 
-                                mView.upDateNewsList(beanList);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         } else {
-                            String mes = httpResponse.getReason();
+                            String msg = httpResponse.getReason();
                         }
 
+
                     }
-                }).build().startPost();
+                }).build().startGet();
+
     }
 
-
     @Override
-    public void setView(NewsContract.View view) {
+    public void setView(PicContract.View view) {
         this.mView = view;
     }
 }

@@ -1,4 +1,4 @@
-package com.violin.readingnews;
+package com.violin.readingnews.news;
 
 
 /**

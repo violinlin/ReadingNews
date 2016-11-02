@@ -11,7 +11,14 @@ public class NetRequest {
     private Object[] heders;
     private Object[] params;
     private byte[] eParams;
+    private String host;
+    private String url;//最终发送的完整url
     private Subscriber<HttpResponse> subscriber;
+
+    public NetRequest host(String host) {
+        this.host = host;
+        return this;
+    }
 
     public NetRequest action(String action) {
         this.action = action;
@@ -42,8 +49,9 @@ public class NetRequest {
         return new NetControl(this);
     }
 
-    public String getAction() {
-        return action;
+    public String getUrl() {
+        url = host + action;
+        return url;
     }
 
     public Object[] getHeders() {
